@@ -1,0 +1,49 @@
+<div class="container-login">
+
+  <mat-card class="card-login">
+
+    <h1>Sistema Ventas</h1>
+
+    <form
+      [formGroup]="formLogin"
+      (ngSubmit)="login()">
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>Usuario</mat-label>
+
+        <input
+          matInput
+          formControlName="usuario">
+
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>Contraseña</mat-label>
+
+        <input
+          matInput
+          type="password"
+          formControlName="password">
+
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width">
+
+        Ingresar
+
+      </button>
+
+    </form>
+
+  </mat-card>
+
+</div>

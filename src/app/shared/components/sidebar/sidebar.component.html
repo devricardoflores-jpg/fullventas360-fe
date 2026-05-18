@@ -1,0 +1,130 @@
+<aside class="sidebar">
+
+  <!-- USER INFO -->
+
+  <div class="sidebar-user">
+
+    <img
+      [src]="photoUrl"
+      alt="usuario"
+      class="photo-user">
+
+    <h3>
+      {{ user?.name }}
+    </h3>
+
+    <p>
+      {{ user?.role?.name || 'USUARIO' }}
+    </p>
+
+    <span class="status">
+      ● Online
+    </span>
+
+  </div>
+
+  <!-- TITLE -->
+
+  <div class="menu-title">
+
+    MENÚ PRINCIPAL
+
+  </div>
+
+  <!-- MENU -->
+
+  <ul class="menu">
+
+    <ng-container *ngFor="let menu of menus">
+
+      <!-- MENU SIMPLE -->
+
+      <li
+
+        *ngIf="!menu.children?.length"
+
+        class="menu-item"
+
+        [routerLink]="menu.route"
+
+        routerLinkActive="active">
+
+        <span class="material-icons icon">
+          {{ menu.icon }}
+        </span>
+
+        <span>
+          {{ menu.name }}
+        </span>
+
+      </li>
+
+      <!-- MENU PADRE -->
+
+      <ng-container *ngIf="menu.children?.length">
+
+        <li
+
+          class="menu-item menu-parent"
+
+          (click)="toggleMenu(menu.id)">
+
+          <div class="menu-left">
+
+            <span class="material-icons icon">
+              {{ menu.icon }}
+            </span>
+
+            <span>
+              {{ menu.name }}
+            </span>
+
+          </div>
+
+          <span class="material-icons arrow">
+
+            {{
+              openMenu == menu.id
+              ? 'expand_less'
+              : 'expand_more'
+            }}
+
+          </span>
+
+        </li>
+
+        <!-- SUBMENU -->
+
+        <ul
+
+          *ngIf="openMenu == menu.id"
+
+          class="submenu">
+
+          <li
+
+            *ngFor="let sub of menu.children"
+
+            [routerLink]="sub.route"
+
+            routerLinkActive="active-sub">
+
+            <span class="material-icons sub-icon">
+              {{ sub.icon }}
+            </span>
+
+            <span>
+              {{ sub.name }}
+            </span>
+
+          </li>
+
+        </ul>
+
+      </ng-container>
+
+    </ng-container>
+
+  </ul>
+
+</aside>
