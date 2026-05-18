@@ -1,0 +1,97 @@
+got init
+git config --list
+
+cambiar rama: 
+got checkout main
+
+eliminar .git
+rm -rf fullventas360-be/.git
+git commit -m "Agregar backend"
+
+
+dev.ricardoflores@gmail.com: command not found
+git config --global user.name "Ricardo Flores"
+git config --global user.email "dev.ricardoflores@gmail.com"
+
+git commit -m "Agregar backend"
+
+git add .
+git commit -m "Proyecto inicial"
+git branch -M main
+git push -u origin main
+
+paso a la rama
+git checkout -b desarrollo
+
+---
+
+git remote add origin https://bitbucket.org/rpventas360/fullventas360-be.git
+git remote -v
+Debe salir algo así:
+
+origin  https://bitbucket.org/rpventas360/fullventas360-be.git (fetch)
+origin  https://bitbucket.org/rpventas360/fullventas360-be.git (push)
+
+Después:
+
+git push -u origin main
+
+Y luego:
+
+git checkout desarrollo
+git push -u origin desarrollo
+
+---------------
+git remote remove origin
+git remote add origin https://github.com/tuusuario/fullventas360.git
+Finalmente sube todo
+git push -u origin main
+git checkout desarrollo
+git push -u origin desarrollo
+
+--------
+Tus archivos siguen ahí. Solo necesitas reinicializar Git correctamente.
+
+Haz esto EXACTAMENTE dentro de:
+
+/d/fullventas360/fullventas360-be
+1. Inicializar Git
+git init
+2. Agregar remoto GitHub
+git remote add origin https://github.com/devricardoflores-jpg/fullventas360-be.git
+3. Agregar archivos
+git add .
+4. Crear commit
+git commit -m "Proyecto inicial"
+
+5. Crear rama main
+git branch -M main
+
+6. Subir a GitHub
+git push -u origin main
+7. Crear rama desarrollo
+git checkout -b desarrollo
+git push -u origin desarrollo
+
+
+
+git push -u origin main --force
+
+Luego crea y sube desarrollo:
+
+git checkout -b desarrollo
+git push -u origin desarrollo
+
+git push -u origin desarrollo --force
+------------------
+
+ir a la carpeta
+git clone https://github.com/devricardoflores-jpg/fullventas360-be.git
+
+Entrar al proyecto
+cd fullventas360-be
+Cambiar a rama desarrollo
+git checkout desarrollo
+
+para verificar
+git branch

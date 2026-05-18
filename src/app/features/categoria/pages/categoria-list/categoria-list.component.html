@@ -1,0 +1,72 @@
+<div class="container-fluid py-4">
+
+  <mat-card class="shadow-lg border-0 rounded-4">
+
+    <mat-toolbar color="primary">
+
+      <span>Gestión de Categorías</span>
+
+      <span class="spacer"></span>
+
+      <button mat-raised-button color="accent">
+        <mat-icon>add</mat-icon>
+        Nueva
+      </button>
+
+    </mat-toolbar>
+
+    <div class="p-4">
+
+      <table
+        datatable
+        [dtOptions]="dtOptions"
+        class="row-border hover w-100"
+      >
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let cat of categorias">
+
+            <td>{{ cat.id }}</td>
+            <td>{{ cat.name }}</td>
+            <td>{{ cat.description }}</td>
+
+            <td class="text-nowrap">
+
+              <button
+                mat-mini-fab
+                color="primary"
+                class="me-2"
+                aria-label="Editar categoría"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-mini-fab
+                color="warn"
+                aria-label="Eliminar categoría"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </mat-card>
+
+</div>

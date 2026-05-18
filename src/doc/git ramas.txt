@@ -1,0 +1,18 @@
+git checkout desarrollo
+📦 Pasas a QA:
+git checkout QA
+git merge desarrollo
+git push origin QA
+🚀 Pasas a producción:
+git checkout main
+git merge QA
+git push origin main
+🔒 RESUMEN FINAL
+desarrollo → QA → main
+
+✔ desarrollo = trabajo diario
+✔ QA = pruebas
+✔ main = producción
+
+elimina rama
+git branch -d develop   

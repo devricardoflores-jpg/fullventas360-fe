@@ -1,0 +1,101 @@
+src/app/features/
+
+features/
+│
+├── auth/
+│
+├── dashboard/
+│
+├── producto/
+│   ├── pages/
+│   │   ├── producto-list/
+│   │   ├── producto-create/
+│   │   ├── producto-edit/
+│   ├── components/
+│   │   ├── producto-form/
+│   │   ├── producto-table/
+│   ├── services/
+│   │   ├── producto.service.ts
+│   ├── models/
+│   │   ├── producto.model.ts
+│   ├── producto-routing.module.ts
+│   ├── producto.module.ts
+│
+├── categoria/
+│   ├── pages/
+│   │   ├── categoria-list/
+│   │   ├── categoria-create/
+│   │   ├── categoria-edit/
+│   ├── components/
+│   │   ├── categoria-form/
+│   │   ├── categoria-table/
+│   ├── services/
+│   │   ├── categoria.service.ts
+│   ├── models/
+│   │   ├── categoria.model.ts
+│   ├── categoria-routing.module.ts
+│   ├── categoria.module.ts
+│
+├── cliente/
+│   ├── pages/
+│   │   ├── cliente-list/
+│   │   ├── cliente-create/
+│   │   ├── cliente-edit/
+│   ├── components/
+│   │   ├── cliente-form/
+│   │   ├── cliente-table/
+│   ├── services/
+│   │   ├── cliente.service.ts
+│   ├── models/
+│   │   ├── cliente.model.ts
+│   ├── cliente-routing.module.ts
+│   ├── cliente.module.ts
+│
+├── venta/
+│   ├── pages/
+│   │   ├── venta-list/
+│   │   ├── venta-create/
+│   │   ├── venta-detail/
+│   ├── components/
+│   │   ├── venta-form/
+│   │   ├── venta-detalle/
+│   ├── services/
+│   │   ├── venta.service.ts
+│   ├── models/
+│   │   ├── venta.model.ts
+│   ├── venta-routing.module.ts
+│   ├── venta.module.ts
+│
+├── inventario/
+│   ├── pages/
+│   │   ├── inventario-list/
+│   │   ├── inventario-movimientos/
+│   ├── components/
+│   │   ├── inventario-table/
+│   ├── services/
+│   │   ├── inventario.service.ts
+│   ├── models/
+│   │   ├── inventario.model.ts
+│   ├── inventario.module.ts
+│
+├── kardex/
+│   ├── pages/
+│   │   ├── kardex-producto/
+│   ├── components/
+│   │   ├── kardex-table/
+│   ├── services/
+│   │   ├── kardex.service.ts
+│   ├── models/
+│   │   ├── kardex.model.ts
+│   ├── kardex.module.ts
+│
+├── reportes/
+│   ├── pages/
+│   │   ├── reporte-ventas/
+│   │   ├── reporte-inventario/
+│   │   ├── reporte-kardex/
+│   ├── components/
+│   │   ├── reporte-filtros/
+│   ├── services/
+│   │   ├── reportes.service.ts
+│   ├── reportes.module.ts
