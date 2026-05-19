@@ -1,0 +1,21 @@
+.form-card {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: 10px !important;
+}
+button mat-spinner {
+  display: inline-block;
+  vertical-align: middle;
+}

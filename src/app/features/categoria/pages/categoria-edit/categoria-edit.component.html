@@ -1,1 +1,60 @@
-<p>categoria-edit works!</p>
+<div class="container-fluid d-flex justify-content-center align-items-center py-5">
+
+  <mat-card class="form-card shadow-lg rounded-4 p-4">
+
+    <mat-toolbar color="primary" class="rounded-4 mb-4 justify-content-center">
+      EDITAR CATEGORIA
+    </mat-toolbar>
+
+    <form (ngSubmit)="updateCategory()">
+
+      <!-- NOMBRE -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="form.name" name="name" />
+      </mat-form-field>
+
+      <!-- DESCRIPCIÓN -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput rows="3" [(ngModel)]="form.description" name="description"></textarea>
+      </mat-form-field>
+
+      <!-- BOTONES -->
+      <div class="d-flex justify-content-between">
+
+        <button
+          mat-stroked-button
+          color="warn"
+          type="button"
+          (click)="cancel()">
+          Cancelar
+        </button>
+
+  
+<button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  [disabled]="loading"
+  class="d-flex align-items-center justify-content-center gap-2">
+
+  <mat-spinner
+    *ngIf="loading"
+    diameter="18">
+  </mat-spinner>
+
+  <span>
+    {{ loading ? 'Actualizando...' : 'Actualizar' }}
+  </span>
+
+</button>
+
+
+      </div>
+
+    </form>
+
+  </mat-card>
+
+</div>

@@ -1,5 +1,4 @@
 
-import { Categoria } from '../../models/categoria';
 import { CategoriaService } from '../../services/categoria.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -10,91 +9,107 @@ import { MatCardModule } from '@angular/material/card';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { DataTablesModule } from 'angular-datatables';
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+
 import 'datatables.net';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categoria-list',
   standalone: true,
   imports: [
-  CommonModule,
-    FormsModule,
+   CommonModule,
+  FormsModule,
 
-    DataTablesModule,
-MatToolbarModule,
-    MatIconModule,
-
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule
+  MatTableModule,   
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule
   ],
   templateUrl: './categoria-list.component.html',
   styleUrl: './categoria-list.component.css'
 })
 export class CategoriaListComponent implements OnInit {
-    categorias: Categoria[] = [];
+  categorias: any[] = [];
 
-dtOptions: any = {};
+  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
 
-  dtTrigger: Subject<any> = new Subject<any>();
+  dataSource = new MatTableDataSource<any>();
 
   constructor(
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+   private router: Router
   ) {}
 
   ngOnInit(): void {
-
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      responsive: true,
-
-      language: {
-        search: 'Buscar:',
-        lengthMenu: 'Mostrar _MENU_ registros',
-        info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
-
-        paginate: {
-          first: 'Primero',
-          last: 'Último',
-          next: '→',
-          previous: '←'
-        }
-      }
-    };
-
-    this.loadCategorias();
+   this.getAll();
   }
-
+/*
   loadCategorias(): void {
+    this.categoriaService.getAll().subscribe({
+      next: (resp) => {
+        this.categorias = resp.data;
 
-    this.categoriaService
-      .getAll()
-      .subscribe({
+        // aquí habilitas la tabla material
+        this.dataSource.data = this.categorias;
+      },
+      error: (err) => console.error(err)
+    });
+  }*/
 
-        next: (resp) => {
-
-          this.categorias = resp.data;
-
-          this.dtTrigger.next(null);
-        },
-
-        error: (err) => {
-          console.error('Error categorías:', err);
-        }
-
-      });
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnDestroy(): void {
+editar(id: number) {
+  this.router.navigate(['/categorias/edit', id]);
+}
 
-    this.dtTrigger.unsubscribe();
 
+  crear() {
+  this.router.navigate(['/categorias/create']);
+}
+
+
+eliminar(id: number) {
+
+  const confirmacion = confirm('¿Deseas eliminar esta categoría?');
+
+  if (!confirmacion) {
+    return;
   }
+
+  this.categoriaService.delete(id).subscribe({
+    next: (res) => {
+      console.log('ELIMINADO:', res);
+
+      // 🔥 recargar lista
+      this.getAll();
+    },
+    error: (err) => {
+      console.error(err);
+      alert('Error al eliminar categoría');
+    }
+  });
+}
+
+getAll() {
+  this.categoriaService.getAll().subscribe({
+    next: (res: any) => {
+      this.dataSource.data = res.data; // ajusta según tu API
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
+
 }
