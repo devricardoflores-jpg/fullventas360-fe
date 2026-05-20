@@ -1,0 +1,5 @@
+
+ng g s features/producto/services/producto
+ng g s features/producto/services/product-image
+
+ng g s features/categoria/services/categoria

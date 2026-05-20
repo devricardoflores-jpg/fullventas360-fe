@@ -34,16 +34,15 @@ export const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent
       },
-       // 📦 PRODUCTOS (PADRE)
-     /* {
+     
+
+      {
         path: 'productos',
         loadChildren: () =>
-          import('./features/producto/producto.module')
-            .then(m => m.ProductoModule)
+          import('./features/producto/producto.routes')
+            .then(m => m.PRODUCTO_ROUTES)
       },
-*/
-      // 🏷️ CATEGORÍAS (puede ser independiente o dentro de productos)
-      // 🏷️ CATEGORÍAS
+
        {
         path: 'categorias',
         loadChildren: () =>

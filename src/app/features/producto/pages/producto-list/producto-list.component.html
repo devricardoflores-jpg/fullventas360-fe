@@ -1,1 +1,223 @@
-<p>producto-list works!</p>
+<div class="table-container">
+
+  <!-- HEADER -->
+
+  <div class="table-header">
+
+    <div>
+
+      <h2>
+        Productos
+      </h2>
+
+      <p class="subtitle">
+        Gestión general de productos ERP
+      </p>
+
+    </div>
+
+    <div class="header-actions">
+
+      <!-- SEARCH -->
+
+      <input
+        type="text"
+        placeholder="Buscar producto..."
+        [(ngModel)]="search"
+        (input)="filterProducts()"
+        class="search-input">
+
+
+
+      <!-- PDF -->
+
+      <button
+        class="btn-pdf"
+        (click)="exportPDF()">
+
+        Exportar PDF
+
+      </button>
+
+      <!-- NEW -->
+
+      <button
+        class="btn-new"
+        (click)="goCreate()">
+
+        + Nuevo Producto
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- TABLE -->
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Imagen</th>
+
+        <th>Producto</th>
+
+        <th>Precio</th>
+
+        <th>Stock</th>
+
+        <th>Categoría</th>
+
+        <th>QR</th>
+
+        <th>Barcode</th>
+
+        <th>Acciones</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr
+        *ngFor="
+          let item
+          of filteredProducts
+        ">
+
+        <td>
+
+          <img
+            class="product-image"
+            [src]="
+              apiUrl +
+              item.images?.[0]
+                ?.image_path
+            ">
+
+        </td>
+
+        <td>
+          {{ item.name }}
+        </td>
+
+      
+
+        <td>
+          S/. {{ item.price }}
+        </td>
+
+        <td>
+          {{ item.quantity }}
+        </td>
+
+        <td>
+          {{ item.category?.name }}
+        </td>
+
+        <td>
+
+          <img
+            width="70"
+            [src]="
+              apiUrl +
+              item.qrcode
+            ">
+
+        </td>
+
+        <td>
+
+          <img
+            width="150"
+            [src]="
+              apiUrl +
+              item.barcode
+            ">
+
+        </td>
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="btn-edit"
+              (click)="edit(item.id)">
+
+              Editar
+
+            </button>
+
+            <button
+              class="btn-delete"
+              (click)="delete(item.id)">
+
+              Eliminar
+
+            </button>
+
+             <button (click)="openPrintView(item)">
+      🖨️
+    </button>
+          </div>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+<div *ngIf="showPrintView" class="print-page">
+
+  <div class="print-ticket">
+
+    <h2 class="title">PRODUCTO</h2>
+
+  
+<div class="info">
+  <p><b>Nombre:</b> {{ selectedProduct?.name }}</p>
+  <p><b>Categoría:</b> {{ selectedProduct?.category?.name }}</p>
+  <!--
+  <p><b>Precio:</b> S/. {{ selectedProduct?.price }}</p>
+  <p><b>Stock:</b> {{ selectedProduct?.quantity }}</p>
+
+  -->
+</div>
+
+
+  
+
+   <div class="qr-barcode">
+  <img [src]="apiUrl + selectedProduct?.qrcode" />
+
+  <p>BARCODE</p>
+
+  <img [src]="apiUrl + selectedProduct?.barcode"  width="300"/>
+</div>
+
+  
+
+    <div class="actions no-print">
+
+      <button (click)="print()" class="btn-print">
+        🖨 Imprimir
+      </button>
+
+      <button (click)="closePrintView()" class="btn-close">
+        Cerrar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

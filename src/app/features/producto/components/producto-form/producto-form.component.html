@@ -1,1 +1,146 @@
-<p>producto-form works!</p>
+<div class="product-card">
+
+  <div class="header">
+
+    <h2>
+      Gestión de Producto
+    </h2>
+
+    <p>
+      Registro y actualización ERP
+    </p>
+
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()">
+
+    <div class="grid">
+
+      <!-- NOMBRE -->
+      <div class="form-group">
+
+        <label>
+          Nombre
+        </label>
+
+        <input
+          type="text"
+          formControlName="name">
+
+      </div>
+
+      <!-- PRECIO -->
+      <div class="form-group">
+
+        <label>
+          Precio
+        </label>
+
+        <input
+          type="number"
+          formControlName="price">
+
+      </div>
+
+      <!-- STOCK -->
+      <div class="form-group">
+
+        <label>
+          Stock
+        </label>
+
+        <input
+          type="number"
+          formControlName="quantity">
+
+      </div>
+
+      <!-- CATEGORIA -->
+      <div class="form-group">
+
+        <label>
+          Categoría
+        </label>
+
+       <select
+  formControlName="category_id">
+
+  <option value="">
+    Seleccione
+  </option>
+
+  <option
+    *ngFor="let cat of categories"
+    [value]="cat.id">
+
+    {{ cat.name }}
+
+  </option>
+
+</select>
+
+      </div>
+
+    </div>
+
+    <!-- DESCRIPCION -->
+
+    <div class="form-group full">
+
+      <label>
+        Descripción
+      </label>
+
+      <textarea
+        rows="4"
+        formControlName="description">
+      </textarea>
+
+    </div>
+
+    <!-- IMAGEN -->
+
+<div class="form-group full">
+
+  <label>
+    Imagen Producto
+  </label>
+
+  <input
+    type="file"
+    (change)="onFileSelected($event)">
+
+    <div
+  class="image-preview"
+  *ngIf="imagePreview">
+
+  <img
+    [src]="imagePreview"
+    alt="preview">
+
+</div>
+
+</div>
+
+
+    <!-- BOTONES -->
+
+    <div class="actions-form">
+    <button class="btn-back" type="button" (click)="goBack()">
+  ⬅ Retornar
+</button>
+
+      <button class="btn-new" type="submit">
+
+        Guardar Producto
+
+      </button>
+
+  
+    </div>
+
+  </form>
+
+</div>
